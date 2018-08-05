@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch --sourceMap",
-    "server": "node dist/index.js",
+    "server": "node dist/backend/src/index.js",
     "start": "npm run build && npm run server",
     "test-data": "npm run build && node dist/backend/db_scripts/create-test-data.js",
     "test": "echo \"Error: no test specified\" && exit 1"

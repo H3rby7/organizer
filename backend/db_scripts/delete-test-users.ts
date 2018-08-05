@@ -1,7 +1,6 @@
 import { Member } from "../../shared/model/member";
 import { MongoClient, Db } from "mongodb";
-
-const COLLECTION_NAME = "members"
+import { COLLECTION_NAME } from "../src/member.service";
 
 const deleteTestMembers = (db: Db): Promise<any> => {
     const collection = db.collection(COLLECTION_NAME);

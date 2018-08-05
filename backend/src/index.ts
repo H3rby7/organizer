@@ -1,11 +1,19 @@
 import app from './App'
+import DbService from './db.service';
 
 const port = process.env.PORT || 3000
 
-app.listen(port, (err) => {
-  if (err) {
-    return console.log(err)
-  }
+DbService.initialize()
+  .then(success => startExpressApp())
+  .catch(e => process.exit(1));
 
-  return console.log(`server is listening on ${port}`)
-})
+
+function startExpressApp() {
+  app.listen(port, (err) => {
+    if (err) {
+      return console.log(err)
+    }
+
+    return console.log(`server is listening on ${port}`)
+  })
+}
