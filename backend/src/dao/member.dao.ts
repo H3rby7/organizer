@@ -1,4 +1,4 @@
-import { Collection, Cursor } from "mongodb";
+import { Collection } from "mongodb";
 import DbService from "../db.service";
 import { Member } from "../../../shared/model/member";
 
@@ -14,7 +14,7 @@ class MemberDAO {
         return this.collection().find({}).toArray();
     }
 
-    collection(): Collection {
+    private collection(): Collection {
         return DbService.getCollection(COLLECTION_NAME);
     }
 

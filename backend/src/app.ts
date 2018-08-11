@@ -1,6 +1,7 @@
 import * as express from 'express'
 import MemberService from './service/member.service';
 import MemberDAO from './dao/member.dao';
+import UserResource from './resource/user.resource';
 
 class App {
   public express
@@ -22,25 +23,10 @@ class App {
     const router = express.Router()
     router.get('/', (req, res) => {
       res.json({
-        message: 'Hello World!'
+        status: 'running'
       })
     });
-    router.get('/count', (req, res) => {
-      this.memberService.getUserCount()
-        .then(data => res.status(200).json({count: data}))
-        .catch(e => {
-          res.sendStatus(500);
-          console.log(e);
-        });
-    });
-    router.get('/users', (req, res) => {
-      this.memberService.getAllUsers()
-        .then(data => res.status(200).json({users: data}))
-        .catch(e => {
-          res.sendStatus(500);
-          console.log(e);
-        });
-    });
+    new UserResource(router, "/user");
     this.express.use('/', router)
   }
 }
