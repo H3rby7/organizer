@@ -1,10 +1,10 @@
 import * as express from 'express'
-import DbService from './db.service';
-import MemberService from './member.service';
+import MemberService from './service/member.service';
+import MemberDAO from './dao/member.dao';
 
 class App {
   public express
-  public memberService = new MemberService();
+  public memberService = new MemberService(new MemberDAO());
 
   constructor() {
     this.initialize();
@@ -24,7 +24,7 @@ class App {
       res.json({
         message: 'Hello World!'
       })
-    })
+    });
     router.get('/count', (req, res) => {
       this.memberService.getUserCount()
         .then(data => res.status(200).json({count: data}))
@@ -32,7 +32,15 @@ class App {
           res.sendStatus(500);
           console.log(e);
         });
-    })
+    });
+    router.get('/users', (req, res) => {
+      this.memberService.getAllUsers()
+        .then(data => res.status(200).json({users: data}))
+        .catch(e => {
+          res.sendStatus(500);
+          console.log(e);
+        });
+    });
     this.express.use('/', router)
   }
 }

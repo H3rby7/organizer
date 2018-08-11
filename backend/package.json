@@ -9,15 +9,22 @@
     "server": "node dist/backend/src/index.js",
     "start": "npm run build && npm run server",
     "test-data": "npm run build && node dist/backend/db_scripts/create-test-data.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "author": "joka",
   "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/express": "^4.16.0",
     "@types/jquery": "^3.3.5",
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.5.4",
     "@types/mongodb": "^3.1.2",
-    "@types/express": "^4.16.0"
+    "@types/node": "^10.5.4",
+    "@types/sinon": "^5.0.1",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "sinon": "^6.1.5",
+    "ts-node": "^7.0.0",
+    "typescript": "^3.0.1"
   },
   "dependencies": {
     "express": "^4.16.3",
