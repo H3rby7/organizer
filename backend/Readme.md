@@ -22,6 +22,7 @@ Add this configuration to `.vscode/launch.json` to debug the backend
   "request": "launch",
   "name": "Launch Backend",
   "program": "${workspaceFolder}/backend/dist/backend/src/index.js",
+  "console": "integratedTerminal",
 }
 ```
 

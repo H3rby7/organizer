@@ -1,5 +1,5 @@
 import { MongoClient, Collection, Db } from "mongodb";
-import { DB_URL } from "../config";
+import {config} from '../config/index'
 import logger from './logger';
 
 class DbService {
@@ -7,7 +7,7 @@ class DbService {
   private static client: MongoClient;
 
   static initialize(): Promise<boolean> {
-    logger.info(`Attempting to connect to MongoDB via '${DB_URL}'`);
+    logger.info(`Attempting to connect to MongoDB via '${config.dbUrl}'`);
     if (DbService.client) {
       logger.warn("Already initialized!");
       return;
@@ -18,7 +18,7 @@ class DbService {
       DbService.shutDown();
     });
 
-    return MongoClient.connect(DB_URL, { useNewUrlParser: true })
+    return MongoClient.connect(config.dbUrl, { useNewUrlParser: true })
       .then(client => {
         DbService.client = client;
         logger.info("Connected successfully to db");

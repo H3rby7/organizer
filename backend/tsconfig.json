@@ -11,7 +11,7 @@
   ],
   "include": [
     "src/**/*.ts",
-    "db_scripts/**/*.ts"
+    "db_scripts/**/*.ts", "environment/config.ts"
   ],
   "exclude": [
     "node_modules",

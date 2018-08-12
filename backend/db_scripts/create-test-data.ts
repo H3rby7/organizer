@@ -1,9 +1,9 @@
 import insertTestMembers from "./create-test-users";
 import { MongoClient } from "mongodb";
-import { DB_URL } from "../config";
+import config from "../config";
 import deleteTestMembers from "./delete-test-users";
 
-MongoClient.connect(DB_URL, { useNewUrlParser: true })
+MongoClient.connect(config.dbUrl, { useNewUrlParser: true })
   .then(client => {
     const db = client.db();
     console.log("Connected successfully to db");

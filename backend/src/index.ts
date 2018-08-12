@@ -1,4 +1,4 @@
-import app from './App'
+import app from './app'
 import DbService from './db.service';
 import logger from './logger';
 
