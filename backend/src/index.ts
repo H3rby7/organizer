@@ -1,5 +1,6 @@
 import app from './App'
 import DbService from './db.service';
+import logger from './logger';
 
 const port = process.env.PORT || 3000
 
@@ -11,9 +12,9 @@ DbService.initialize()
 function startExpressApp() {
   app.listen(port, (err) => {
     if (err) {
-      return console.log(err)
+      return logger.error(err)
     }
 
-    return console.log(`server is listening on ${port}`)
+    return logger.info(`server is listening on ${port}`)
   })
 }

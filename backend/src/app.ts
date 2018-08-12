@@ -3,7 +3,7 @@ import MemberService from './service/member.service';
 import MemberDAO from './dao/member.dao';
 import UserResource from './resource/user.resource';
 import middleware from './middleware';
-import * as loggerConfigurer from './logger';
+import logger from './logger';
 
 
 class App {
@@ -15,15 +15,13 @@ class App {
   }
 
   private initialize(): void {
-    loggerConfigurer.configure();
-    console.log(`Initializing App`);
-    console.log(`Starting Express`);
+    logger.info(`Initializing App`);
     this.express = express();
     this.mountRoutes();
   }
 
   private mountRoutes(): void {
-    console.log(`Setting up routes`);
+    logger.info(`Setting up routes`);
     const router = express.Router();
     router.get('/', (req, res) => {
       res.json({
