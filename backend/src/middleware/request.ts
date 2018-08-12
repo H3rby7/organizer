@@ -1,3 +1,6 @@
-interface Request extends Express.Request {
+import { Request as ExpressRequest } from 'express-serve-static-core';
+
+export interface Request extends ExpressRequest {
   uuid: string;
+  timestamp: Date;
 }

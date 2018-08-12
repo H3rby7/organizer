@@ -2,7 +2,9 @@ import * as express from 'express'
 import MemberService from './service/member.service';
 import MemberDAO from './dao/member.dao';
 import UserResource from './resource/user.resource';
-import {v1 as uuid} from 'uuid';
+import middleware from './middleware';
+import * as loggerConfigurer from './logger';
+
 
 class App {
   public express
@@ -13,6 +15,7 @@ class App {
   }
 
   private initialize(): void {
+    loggerConfigurer.configure();
     console.log(`Initializing App`);
     console.log(`Starting Express`);
     this.express = express();
@@ -28,10 +31,7 @@ class App {
       })
     });
     new UserResource(router, "/user");
-    this.express.use((req: Request, res: express.Response, next: express.NextFunction) => {
-      req.uuid = uuid();
-      next();
-    })
+    middleware(this.express);
     this.express.use('/', router);
   }
 }
