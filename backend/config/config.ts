@@ -15,13 +15,27 @@ const isProd = isProdArg && isProdArg.split('=')[1] === 'true' ? true : false;
 const config = isProd ? prodConfig : devConfig;
 
 // set individual values
-process.argv.forEach(e => {
-  const kvPair = e.split('=');
-  if (config.hasOwnProperty(kvPair[0])) {
-    config[kvPair[0]] = kvPair[1];
-  }
-});
+process.argv.forEach(e => setTypedValue(config, e));
 
 console.log(`Using config: ${JSON.stringify(config)}`);
 
 export default config;
+
+function setTypedValue(config: Config, e: string) {
+  const kvPair = e.split('=');
+  if (config.hasOwnProperty(kvPair[0])) {
+    const valueType = typeof config[kvPair[0]];
+    const typedValue = getAsTypedValue(valueType, kvPair[1]);
+    if (typedValue !== undefined) {
+      console.log(`overwriting ${kvPair[0]} with ${typedValue}`)
+      config[kvPair[0]] = typedValue;
+    }
+  }
+}
+
+function getAsTypedValue(type: string, value: string): any {
+  if (type === 'boolean') {
+    return value === 'true' ? true : (value === 'false' ? false : undefined);
+  }
+  return value as string;
+}
