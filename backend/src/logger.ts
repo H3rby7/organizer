@@ -2,9 +2,9 @@ import * as appRoot from 'app-root-path'
 import * as winston from 'winston';
 import { transports } from 'winston';
 import { Format } from 'logform';
+import config from '../config/config'
 
 const options = {
-  level: 'debug',
   file: {
     level: 'info',
     filename: `${appRoot}/logs/app.log`,
@@ -24,14 +24,20 @@ const options = {
   },
 };
 
-console.log(`Logging to file: ${options.file.filename}`);
-
-const logger = winston.createLogger({
-  level: options.level,
-  transports: [
+let outputs;
+if (config.enableFileLog) {
+  outputs = [
     new transports.File(options.file),
     new transports.Console(options.console)
-  ],
+  ]
+  console.log(`Logging to file: ${options.file.filename}`);
+} else {
+  outputs = [
+    new transports.Console(options.console)
+  ]
+}
+const logger = winston.createLogger({
+  transports: outputs,
   exitOnError: false, // do not exit on handled exceptions
 });
 

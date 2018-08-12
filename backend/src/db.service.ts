@@ -1,5 +1,5 @@
 import { MongoClient, Collection, Db } from "mongodb";
-import {config} from '../config/index'
+import config from '../config/config'
 import logger from './logger';
 
 class DbService {

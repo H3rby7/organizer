@@ -3,8 +3,13 @@
 ## Setup
 
 1. [Install MongoDB](https://www.w3schools.com/nodejs/nodejs_mongodb.asp)
+1. Run MongoDb on `mongodb://localhost:27017`
 1. Run `npm install`
 1. `npm start`
+
+## Parameters
+
+Checkout [Config]('.config/config.ts') for available options.
 
 ## Develop
 
@@ -12,18 +17,65 @@
 
 ### with VsCode
 
-Open the .tsconfig file and run the tsc:watch task as suggested by VsCode
-
-Add this configuration to `.vscode/launch.json` to debug the backend
+`.vscode/launch.json`:
 
 ```json
 {
-  "type": "node",
-  "request": "launch",
-  "name": "Launch Backend",
-  "program": "${workspaceFolder}/backend/dist/backend/src/index.js",
-  "console": "integratedTerminal",
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    // {
+    //   "type": "node",
+    //   "request": "launch",
+    //   "name": "Launch Program",
+    //   "program": "${file}",
+    //   "sourceMaps": true
+    // },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Backend",
+      "program": "${workspaceFolder}/backend/dist/backend/src/index.js",
+      "console": "integratedTerminal",
+      "args": [
+        "isProd=false"
+      ]
+    }
+  ]
 }
 ```
 
-Now the Watch Task will automatically update your dist/ folder and you can easily restart your server with the new files using the VSCode debug overlay.
+`.vscode/tasks.json`:
+
+```json
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "typescript",
+            "tsconfig": "backend\\tsconfig.json",
+            "problemMatcher": [
+                "$tsc"
+            ]
+        },
+        {
+            "type": "npm",
+            "script": "test-data",
+            "path": "backend/",
+            "problemMatcher": []
+        },
+        {
+            "type": "typescript",
+            "tsconfig": "backend\\tsconfig.json",
+            "option": "watch",
+            "problemMatcher": [
+                "$tsc-watch"
+            ]
+        }
+    ]
+}
+```

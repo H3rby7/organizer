@@ -7,8 +7,8 @@
     "build": "tsc",
     "watch": "tsc --watch --sourceMap",
     "server": "node dist/backend/src/index.js",
-    "start": "npm run build && npm run server",
-    "test-data": "npm run build && node dist/backend/db_scripts/create-test-data.js",
+    "start": "npm run build && npm run server isProd=false",
+    "test-data": "npm run build && node dist/backend/db_scripts/create-test-data.js isProd=false",
     "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "author": "joka",

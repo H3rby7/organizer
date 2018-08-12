@@ -1,6 +1,6 @@
 import insertTestMembers from "./create-test-users";
 import { MongoClient } from "mongodb";
-import config from "../config";
+import config from "../config/config";
 import deleteTestMembers from "./delete-test-users";
 
 MongoClient.connect(config.dbUrl, { useNewUrlParser: true })
