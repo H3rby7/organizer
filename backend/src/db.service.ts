@@ -25,7 +25,7 @@ class DbService {
       })
       .catch(err => {
         console.log("ERROR connecting to DB");
-        return Promise.resolve(false);
+        return Promise.reject(false);
       });
   }
 

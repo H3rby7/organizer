@@ -2,6 +2,7 @@ import * as express from 'express'
 import MemberService from './service/member.service';
 import MemberDAO from './dao/member.dao';
 import UserResource from './resource/user.resource';
+import {v1 as uuid} from 'uuid';
 
 class App {
   public express
@@ -20,14 +21,18 @@ class App {
 
   private mountRoutes(): void {
     console.log(`Setting up routes`);
-    const router = express.Router()
+    const router = express.Router();
     router.get('/', (req, res) => {
       res.json({
         status: 'running'
       })
     });
     new UserResource(router, "/user");
-    this.express.use('/', router)
+    this.express.use((req: Request, res: express.Response, next: express.NextFunction) => {
+      req.uuid = uuid();
+      next();
+    })
+    this.express.use('/', router);
   }
 }
 
