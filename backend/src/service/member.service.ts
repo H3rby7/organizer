@@ -24,7 +24,10 @@ class MemberService {
     }
 
     createNewMember(member: Member): Promise<Member> {
-        if (!member) return;
+        if (!member) {
+            logger.error(`Requires a member to create`)
+            return Promise.reject(`Cannot create member, without a member`);
+        };
         logger.debug('creating new member');
         return this.dao.insertMember(member);
     }
@@ -32,7 +35,7 @@ class MemberService {
     updateMember(id: string, member: Member): Promise<Member> {
         if (!id || !member) {
             logger.error(`Cannot update member with id: ${id} using object: ${JSON.stringify(member)}`)
-            return Promise.reject('Invalid Call');
+            return Promise.reject(`Cannot update member with id: ${id} using object: ${JSON.stringify(member)}`);
         };
         return this.dao.updateMember(id, member);
     }
