@@ -1,4 +1,4 @@
-import { Collection } from "mongodb";
+import { Collection, ObjectID } from "mongodb";
 import DbService from "../db.service";
 import { Member } from "../../../shared/model/member";
 
@@ -10,8 +10,24 @@ class MemberDAO {
         return this.collection().countDocuments();
     }
 
+    findOneById(id: string): Promise<Member> {
+        return this.collection().findOne(new ObjectID(id));
+    }
+
     findAll(): Promise<Member[]> {
         return this.collection().find({}).toArray();
+    }
+
+    insertMember(member: Member): Promise<Member> {
+        return this.collection().insertOne(member)
+            .then(res =>  this.collection().findOne({_id: res.insertedId}))
+            .catch(err => Promise.reject(err));
+    }
+
+    updateMember(id: string, member: Member): Promise<Member> {
+        return this.collection().findOneAndUpdate({_id: new ObjectID(id)}, {$set: member}, {returnOriginal: false})
+            .then(res =>  Promise.resolve(res.value))
+            .catch(err => Promise.reject(err));
     }
 
     private collection(): Collection {

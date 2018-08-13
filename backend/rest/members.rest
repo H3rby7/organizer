@@ -3,3 +3,25 @@ http://localhost:3000/user/all
 ###
 
 http://localhost:3000/user/count
+
+###
+
+http://localhost:3000/user/5b70ca1b9031ed00c046a903
+
+###
+
+POST http://localhost:3000/user/add
+content-type: application/json
+
+{
+    "name": "RestUser2"
+}
+
+###
+
+POST http://localhost:3000/user/update/5b70ca1b9031ed00c046a903
+content-type: application/json
+
+{
+    "name": "RestUser"
+}

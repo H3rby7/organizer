@@ -1,7 +1,7 @@
 import * as express from 'express'
 import MemberService from './service/member.service';
 import MemberDAO from './dao/member.dao';
-import UserResource from './resource/user.resource';
+import MemberResource from './resource/member.resource';
 import middleware from './middleware';
 import logger from './logger';
 
@@ -28,7 +28,7 @@ class App {
         status: 'running'
       })
     });
-    new UserResource(router, "/user");
+    new MemberResource(router, "/user");
     middleware(this.express);
     this.express.use('/', router);
   }
