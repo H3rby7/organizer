@@ -23,12 +23,12 @@ class App {
   private mountRoutes(): void {
     logger.info(`Setting up routes`);
     const router = express.Router();
-    router.get('/', (req, res) => {
+    router.get('/api', (req, res) => {
       res.json({
         status: 'running'
       })
     });
-    new MemberResource(router, "/user");
+    new MemberResource(router, '/api/member');
     middleware(this.express);
     this.express.use('/', router);
   }

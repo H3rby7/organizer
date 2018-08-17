@@ -19,7 +19,7 @@ class MemberResource {
 
   count(req, res) {
     this.memberService.getMemberCount()
-      .then(data => res.status(200).json({ count: data }))
+      .then(data => res.status(200).json(data))
       .catch(e => {
         res.sendStatus(500);
         logger.error(e);
@@ -28,7 +28,7 @@ class MemberResource {
 
   getAll(req, res) {
     this.memberService.getAllMembers()
-      .then(data => res.status(200).json({ users: data }))
+      .then(data => res.status(200).json(data))
       .catch(e => {
         res.sendStatus(500);
         logger.error(e);

@@ -5,11 +5,11 @@ import { MemberListComponent } from '../member/member-admin/member-list/member-l
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: AdminDashboardComponent,
   },
   {
-    path: "member",
+    path: 'member',
     component: MemberListComponent,
   }
 ]
