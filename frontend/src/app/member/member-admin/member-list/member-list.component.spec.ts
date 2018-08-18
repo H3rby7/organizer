@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MemberListComponent } from './member-list.component';
+import { MemberAdminService } from '../member-admin.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MemberListComponent', () => {
   let component: MemberListComponent;
@@ -8,9 +10,11 @@ describe('MemberListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberListComponent ]
+      imports: [HttpClientTestingModule],
+      providers: [MemberAdminService],
+      declarations: [MemberListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
