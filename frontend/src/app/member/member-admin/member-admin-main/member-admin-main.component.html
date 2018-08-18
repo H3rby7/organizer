@@ -8,6 +8,6 @@
     <button class="btn" (click)="openNewMemberModal()">New Member</button>
   </div>
   <div class="col-12">
-    <app-member-list [members]="members" (onDelete)="deleteMember($event)" (onEdit)="openEditMemberModal($event)"></app-member-list>
+    <app-member-list [members]="members" (showControls)="true" (onDelete)="deleteMember($event)" (onEdit)="openEditMemberModal($event)"></app-member-list>
   </div>
 </div>

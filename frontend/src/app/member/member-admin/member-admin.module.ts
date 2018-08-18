@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MemberListComponent } from './member-list/member-list.component';
 import { MemberCommonModule } from '../member-common/member-common.module';
 import { MemberAdminService } from './member-admin.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,8 +18,7 @@ import { FormsModule } from '@angular/forms';
     MemberCommonModule,
     MemberAdminRoutingModule
   ],
-  declarations: [MemberListComponent, MemberAdminComponent, MemberModalComponent],
-  exports: [MemberListComponent],
+  declarations: [MemberAdminComponent, MemberModalComponent],
   providers: [MemberAdminService],
   entryComponents: [MemberModalComponent]
 })

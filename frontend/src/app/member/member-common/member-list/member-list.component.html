@@ -14,7 +14,7 @@
           <th>Phone</th>
           <th>Food</th>
           <th>Notes</th>
-          <th>Actions</th>
+          <th *ngIf="showControls">Actions</th>
         </tr>
         <tr *ngFor="let member of members">
           <td>{{member.name}}</td>
@@ -23,7 +23,7 @@
           <td>{{member.phone}}</td>
           <td>{{member.food}}</td>
           <td>{{member.notes}}</td>
-          <td>
+          <td *ngIf="showControls">
             <button class="btn btn-warning" (click)="editMember(member)">edit</button>
             <button class="btn btn-danger" (click)="deleteMember(member)">delete</button>
           </td>

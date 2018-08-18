@@ -15,6 +15,8 @@ export class MemberListComponent implements OnInit {
     this.members = nextMembers;
   }
 
+  @Input() showControls = false;
+
   @Output() onDelete: EventEmitter<Member> = new EventEmitter();
   @Output() onEdit: EventEmitter<Member> = new EventEmitter();
 
