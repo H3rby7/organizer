@@ -1,0 +1,21 @@
+@import "colors";
+
+nav {
+  background-color: $color-primary;
+  display: flex;
+  flex-direction: row;
+
+  a {
+    background-color: $color-primary;
+    font-size: 1rem;
+    color: $color-white;
+    display: inline-block;
+    padding: 1em;
+
+    &:hover {
+      background-color: $color-primary-hover;
+      text-decoration: none;
+    }
+  }
+
+}
