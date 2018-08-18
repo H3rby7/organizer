@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminDashboardComponent } from './admin-dashboard.component';
+import { AdminRoutingModule } from '../admin-routing.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { MemberAdminModule } from '../../member/member-admin/member-admin.module';
+import { RouterModule } from '@angular/router';
 
 describe('AdminDashboardComponent', () => {
   let component: AdminDashboardComponent;
@@ -8,9 +13,10 @@ describe('AdminDashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminDashboardComponent ]
+      imports: [AdminRoutingModule, RouterTestingModule, NgbTabsetModule, MemberAdminModule],
+      declarations: [AdminDashboardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

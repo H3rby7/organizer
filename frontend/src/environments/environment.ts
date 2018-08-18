@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  backendApiUrl: "/api/"
+  backendApiUrl: "/api/",
+  debugRouter: false
 };
 
 /*
