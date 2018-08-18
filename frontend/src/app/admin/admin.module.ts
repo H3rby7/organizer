@@ -5,6 +5,7 @@ import { MemberAdminModule } from '../member/member-admin/member-admin.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { AdminMainComponent } from './admin-main/admin-main.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,9 @@ import { RouterModule } from '@angular/router';
     AdminRoutingModule,
     MemberAdminModule,
   ],
-  declarations: [AdminDashboardComponent]
+  declarations: [
+    AdminDashboardComponent,
+    AdminMainComponent,
+  ]
 })
 export class AdminModule { }
