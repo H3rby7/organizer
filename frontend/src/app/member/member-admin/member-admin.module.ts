@@ -4,18 +4,24 @@ import { MemberListComponent } from './member-list/member-list.component';
 import { MemberCommonModule } from '../member-common/member-common.module';
 import { MemberAdminService } from './member-admin.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MemberAdminDashboardComponent } from './member-admin-dashboard/member-admin-dashboard.component';
+import { MemberAdminComponent } from './member-admin-main/member-admin-main.component';
 import { MemberAdminRoutingModule } from './member-admin-routing.module';
+import { AddMemberModalComponent } from './add-member-modal/add-member-modal.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    MemberCommonModule,
     HttpClientModule,
+    FormsModule,
+    NgbModalModule,
+    MemberCommonModule,
     MemberAdminRoutingModule
   ],
-  declarations: [MemberListComponent, MemberAdminDashboardComponent],
+  declarations: [MemberListComponent, MemberAdminComponent, AddMemberModalComponent],
   exports: [MemberListComponent],
-  providers: [MemberAdminService]
+  providers: [MemberAdminService],
+  entryComponents: [AddMemberModalComponent]
 })
 export class MemberAdminModule { }

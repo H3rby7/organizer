@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add Member</h4>
+  <button type="button" class="btn close" aria-label="Close" (click)="onDismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form (ngSubmit)="onConfirm()" #newMemberForm="ngForm">
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="member-name">Name</label>
+      <input [(ngModel)]="member.name" id="member-name" name="member-name" class="form-control" placeholder="Bernard">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input type="submit" class="btn btn-outline-dark" value="Create"/>
+  </div>
+</form>

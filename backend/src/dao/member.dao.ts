@@ -1,6 +1,7 @@
 import { Collection, ObjectID } from "mongodb";
 import DbService from "../db.service";
 import { Member } from "../../../shared/model/member";
+import logger from '../logger';
 
 export const COLLECTION_NAME = "members"
 
@@ -12,6 +13,18 @@ class MemberDAO {
 
     findOneById(id: string): Promise<Member> {
         return this.collection().findOne(new ObjectID(id));
+    }
+
+    deleteOneById(id: string): Promise<boolean> {
+        return this.collection().deleteOne(new ObjectID(id))
+        .then(res => {
+            const wasOk = res && res.result && res.result.ok === 1;
+            if (wasOk) {
+                return Promise.resolve(true);
+            }
+            return Promise.reject(false);
+        })
+        .catch(err => Promise.reject(err));
     }
 
     findAll(): Promise<Member[]> {

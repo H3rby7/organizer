@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MemberAdminService } from '../member-admin.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { Member } from '../../../../../../shared/model/member';
 
 @Component({
@@ -9,14 +8,16 @@ import { Member } from '../../../../../../shared/model/member';
 })
 export class MemberListComponent implements OnInit {
 
-members: Member[];
+  members: Member[];
 
-  constructor(
-    private readonly adminService: MemberAdminService) { 
-      this.adminService.getAll()
-      .then(res => this.members = res)
-      .catch(err => console.log(err))
-    }
+  @Input('members')
+  set setMembers(nextMembers: Member[]) {
+    this.members = nextMembers;
+  }
+
+  constructor() {
+
+  }
 
   ngOnInit() {
   }

@@ -28,7 +28,7 @@ class App {
         status: 'running'
       })
     });
-    new MemberResource(router, '/api/member');
+    new MemberResource(router);
     middleware(this.express);
     this.express.use('/', router);
   }

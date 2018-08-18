@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, ActivatedRouteSnapshot } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { MemberAdminDashboardComponent } from '../member/member-admin/member-admin-dashboard/member-admin-dashboard.component';
+import { MemberAdminComponent } from '../member/member-admin/member-admin-main/member-admin-main.component';
 import { AdminMainComponent } from './admin-main/admin-main.component';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'member',
-        component: MemberAdminDashboardComponent
+        component: MemberAdminComponent
       },
       {
         path: 'dashboard',

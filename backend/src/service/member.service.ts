@@ -23,6 +23,11 @@ class MemberService {
         return this.dao.findOneById(id);
     }
 
+    deleteMemberById(id: string): Promise<boolean> {
+        logger.debug(`Deleting member with id: ${id}`)
+        return this.dao.deleteOneById(id);
+    }
+
     createNewMember(member: Member): Promise<Member> {
         if (!member) {
             logger.error(`Requires a member to create`)
