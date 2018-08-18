@@ -1,1 +1,20 @@
-<div *ngFor="let member of members">{{member.name}}</div>
+<div class="member-list">
+  <div class="row">
+    <div class="col-12">
+      Space for filters
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table>
+        <tr>
+          <th></th>
+        </tr>
+        <tr *ngFor="let member of members">
+          <td>{{member.name}}</td>
+          <td><button (click)="deleteMember(member)">delete</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

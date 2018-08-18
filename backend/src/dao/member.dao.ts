@@ -16,10 +16,9 @@ class MemberDAO {
     }
 
     deleteOneById(id: string): Promise<boolean> {
-        return this.collection().deleteOne(new ObjectID(id))
+        return this.collection().findOneAndDelete({_id: new ObjectID(id)})
         .then(res => {
-            const wasOk = res && res.result && res.result.ok === 1;
-            if (wasOk) {
+            if (res && res.ok === 1) {
                 return Promise.resolve(true);
             }
             return Promise.reject(false);

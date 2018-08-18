@@ -18,7 +18,7 @@ class MemberResource {
     router[ePs.ADD.method](`${path}${ePs.ADD.path}`, this.addNew.bind(this));
     router[ePs.GET_BY_ID.method](`${path}${ePs.GET_BY_ID.path}`, this.getOneById.bind(this));
     router[ePs.UPDATE.method](`${path}${ePs.UPDATE.path}`, this.update.bind(this));
-    router[ePs.DELETE.method](`${path}${ePs.DELETE.path}`, this.update.bind(this));
+    router[ePs.DELETE.method](`${path}${ePs.DELETE.path}`, this.deleteOneById.bind(this));
   };
 
   count(req, res) {

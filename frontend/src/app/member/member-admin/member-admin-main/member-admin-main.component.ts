@@ -13,7 +13,7 @@ export class MemberAdminComponent implements OnInit {
 
   members: Member[];
 
-  constructor(private readonly modalService: NgbModal, private readonly adminService: MemberAdminService) { 
+  constructor(private readonly modalService: NgbModal, private readonly adminService: MemberAdminService) {
     this.adminService.getAll()
       .then(res => this.members = res)
       .catch(err => console.log(err))
@@ -24,10 +24,18 @@ export class MemberAdminComponent implements OnInit {
 
   openNewMemberModal() {
     this.modalService.open(AddMemberModalComponent, { centered: true }).result
-    .then((nextMember: Member) => {
-      this.members.push(nextMember);
-    })
-    .catch(err => console.log(err));
+      .then((nextMember: Member) => {
+        this.members.push(nextMember);
+      })
+      .catch(err => console.log(err));
+  }
+
+  deleteMember(member: Member) {
+    this.adminService.deleteMember(member)
+      .then(res => {
+        this.members.splice(this.members.indexOf(member), 1);
+      })
+      .catch(err => console.log(err));
   }
 
 }

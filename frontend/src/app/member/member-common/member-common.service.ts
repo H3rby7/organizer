@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Member } from '../../../../../shared/model/member'
 import { MemberResourceConfig } from '../../../../../shared/endpoints/member';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
