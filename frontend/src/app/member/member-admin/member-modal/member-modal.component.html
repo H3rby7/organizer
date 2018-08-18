@@ -18,6 +18,18 @@
       <label for="member-phone">Phone</label>
       <input type="tel" [(ngModel)]="member.phone" id="member-phone" name="member-phone" class="form-control" placeholder="+49123456789">
     </div>
+    <div class="form-group">
+      <label for="member-food">Food</label>
+      <input type="text" [(ngModel)]="member.food" id="member-food" name="member-food" class="form-control" placeholder="vegan">
+    </div>
+    <div class="form-group">
+      <label for="member-notes">Notes</label>
+      <textarea class="form-control" [(ngModel)]="member.notes" placeholder="allergic to wheat" id="member-notes" name="member-notes"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="member-status">Status</label>
+      <input type="text" [(ngModel)]="member.status" id="member-status" name="member-status" class="form-control" placeholder="active">
+    </div>
   </div>
   <div class="modal-footer">
     <input type="submit" class="btn btn-outline-dark" [value]="isUpdate ? 'Update' : 'Create'" [disabled]="!isInputValid()"/>

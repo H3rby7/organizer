@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MemberModalComponent } from '../member-modal/member-modal.component';
 import { Member } from '../../../../../../shared/model/member';
 import { MemberAdminService } from '../member-admin.service';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-member-admin-dashboard',
@@ -27,7 +28,7 @@ export class MemberAdminComponent implements OnInit {
       .then((nextMember: Member) => {
         this.members.push(nextMember);
       })
-      .catch(err => console.log(err));
+      .catch(noop);
   }
 
   openEditMemberModal(member: Member) {
@@ -42,7 +43,7 @@ export class MemberAdminComponent implements OnInit {
         member.food = updateMember.food;
         member.notes = updateMember.notes;
       })
-      .catch(err => console.log(err));
+      .catch(noop);
   }
 
   deleteMember(member: Member) {
@@ -50,7 +51,7 @@ export class MemberAdminComponent implements OnInit {
       .then(res => {
         this.members.splice(this.members.indexOf(member), 1);
       })
-      .catch(err => console.log(err));
+      .catch(noop);
   }
 
 }

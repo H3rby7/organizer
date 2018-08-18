@@ -6,14 +6,27 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <table>
+      <table class="table">
         <tr>
-          <th></th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Food</th>
+          <th>Notes</th>
+          <th>Actions</th>
         </tr>
         <tr *ngFor="let member of members">
           <td>{{member.name}}</td>
-          <td><button (click)="editMember(member)">edit</button></td>
-          <td><button (click)="deleteMember(member)">delete</button></td>
+          <td>{{member.status}}</td>
+          <td>{{member.email}}</td>
+          <td>{{member.phone}}</td>
+          <td>{{member.food}}</td>
+          <td>{{member.notes}}</td>
+          <td>
+            <button class="btn btn-warning" (click)="editMember(member)">edit</button>
+            <button class="btn btn-danger" (click)="deleteMember(member)">delete</button>
+          </td>
         </tr>
       </table>
     </div>
