@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MemberAdminService } from '../member-admin.service';
 import { Member } from '../../../../../../shared/model/member';
-import { cp } from '../../../util/copy';
+import { cp } from '../../../../../../shared/util/copy';
 
 @Component({
   selector: 'app-member-modal',
