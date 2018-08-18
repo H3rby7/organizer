@@ -1,7 +1,6 @@
 @import "colors";
 
 nav {
-  background-color: $color-primary;
   display: flex;
   flex-direction: row;
 
@@ -11,6 +10,10 @@ nav {
     color: $color-white;
     display: inline-block;
     padding: 1em;
+
+    &:first-child {
+      padding-left: 0;
+    }
 
     &:hover {
       background-color: $color-primary-hover;
