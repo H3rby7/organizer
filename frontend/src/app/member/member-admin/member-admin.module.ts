@@ -6,7 +6,7 @@ import { MemberAdminService } from './member-admin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MemberAdminComponent } from './member-admin-main/member-admin-main.component';
 import { MemberAdminRoutingModule } from './member-admin-routing.module';
-import { AddMemberModalComponent } from './add-member-modal/add-member-modal.component';
+import { MemberModalComponent } from './member-modal/member-modal.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
@@ -19,9 +19,9 @@ import { FormsModule } from '@angular/forms';
     MemberCommonModule,
     MemberAdminRoutingModule
   ],
-  declarations: [MemberListComponent, MemberAdminComponent, AddMemberModalComponent],
+  declarations: [MemberListComponent, MemberAdminComponent, MemberModalComponent],
   exports: [MemberListComponent],
   providers: [MemberAdminService],
-  entryComponents: [AddMemberModalComponent]
+  entryComponents: [MemberModalComponent]
 })
 export class MemberAdminModule { }

@@ -15,8 +15,8 @@ export class MemberListComponent implements OnInit {
     this.members = nextMembers;
   }
 
-  @Output()
-  onDelete: EventEmitter<Member> = new EventEmitter();
+  @Output() onDelete: EventEmitter<Member> = new EventEmitter();
+  @Output() onEdit: EventEmitter<Member> = new EventEmitter();
 
   constructor() {
 
@@ -27,6 +27,10 @@ export class MemberListComponent implements OnInit {
 
   deleteMember(member: Member) {
     this.onDelete.emit(member);
+  }
+
+  editMember(member: Member) {
+    this.onEdit.emit(member);
   }
 
 }

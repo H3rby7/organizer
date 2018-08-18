@@ -12,6 +12,7 @@
         </tr>
         <tr *ngFor="let member of members">
           <td>{{member.name}}</td>
+          <td><button (click)="editMember(member)">edit</button></td>
           <td><button (click)="deleteMember(member)">delete</button></td>
         </tr>
       </table>

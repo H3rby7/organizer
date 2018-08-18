@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddMemberModalComponent } from '../add-member-modal/add-member-modal.component';
+import { MemberModalComponent } from '../member-modal/member-modal.component';
 import { Member } from '../../../../../../shared/model/member';
 import { MemberAdminService } from '../member-admin.service';
 
@@ -23,9 +23,24 @@ export class MemberAdminComponent implements OnInit {
   }
 
   openNewMemberModal() {
-    this.modalService.open(AddMemberModalComponent, { centered: true }).result
+    this.modalService.open(MemberModalComponent, { centered: true }).result
       .then((nextMember: Member) => {
         this.members.push(nextMember);
+      })
+      .catch(err => console.log(err));
+  }
+
+  openEditMemberModal(member: Member) {
+    const modal = this.modalService.open(MemberModalComponent, { centered: true });
+    modal.componentInstance.setMember = member;
+    modal.result
+      .then(updateMember => {
+        member.name = updateMember.name;
+        member.status = updateMember.status;
+        member.email = updateMember.email;
+        member.phone = updateMember.phone;
+        member.food = updateMember.food;
+        member.notes = updateMember.notes;
       })
       .catch(err => console.log(err));
   }

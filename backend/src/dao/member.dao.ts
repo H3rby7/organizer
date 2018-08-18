@@ -37,6 +37,7 @@ class MemberDAO {
     }
 
     updateMember(id: string, member: Member): Promise<Member> {
+        delete member._id;
         return this.collection().findOneAndUpdate({_id: new ObjectID(id)}, {$set: member}, {returnOriginal: false})
             .then(res =>  Promise.resolve(res.value))
             .catch(err => Promise.reject(err));

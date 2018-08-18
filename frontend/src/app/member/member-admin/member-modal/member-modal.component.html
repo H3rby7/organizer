@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add Member</h4>
+  <button type="button" class="btn close" aria-label="Close" (click)="onDismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form (ngSubmit)="onConfirm()" #newMemberForm="ngForm">
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="member-name">Name</label>
+      <input type="text" [(ngModel)]="member.name" id="member-name" name="member-name" class="form-control" placeholder="Bernard" required>
+    </div>
+    <div class="form-group">
+      <label for="member-email">Email</label>
+      <input type="email" [(ngModel)]="member.email" id="member-email" name="member-email" class="form-control" placeholder="bernard@gmail.com" required>
+    </div>
+    <div class="form-group">
+      <label for="member-phone">Phone</label>
+      <input type="tel" [(ngModel)]="member.phone" id="member-phone" name="member-phone" class="form-control" placeholder="+49123456789">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input type="submit" class="btn btn-outline-dark" [value]="isUpdate ? 'Update' : 'Create'" [disabled]="!isInputValid()"/>
+  </div>
+</form>

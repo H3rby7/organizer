@@ -68,7 +68,7 @@ class MemberResource {
 
   update(req, res) {
     this.memberService.updateMember(req.params.id, req.body as Member)
-      .then(data => res.status(200).json({ users: data }))
+      .then(data => res.status(200).json(data))
       .catch(e => {
         res.sendStatus(500);
         logger.error(e);
