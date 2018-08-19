@@ -2,7 +2,7 @@ import { Collection, ObjectID } from "mongodb";
 import DbService from "../db.service";
 import { TypeWithID } from '../../../shared/model/typeWithId';
 
-class BasicObjectDAO<T> {
+class BasicDAO<T> {
 
     constructor(protected collectionName: string) {
 
@@ -55,4 +55,4 @@ class BasicObjectDAO<T> {
 }
 
 
-export default BasicObjectDAO;
+export default BasicDAO;

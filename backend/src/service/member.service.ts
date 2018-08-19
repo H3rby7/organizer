@@ -1,48 +1,11 @@
-import BasicObjectDAO from '../dao/generic.dao';
+import BasicObjectDAO from '../dao/basic.dao';
 import { Member } from "../../../shared/model/member";
-import logger from '../logger';
+import BasicService from './basic.service';
 
-class MemberService {
+class MemberService extends BasicService<Member> {
 
-    constructor(private readonly dao: BasicObjectDAO<Member>) {
-
-    }
-
-    getMemberCount(): Promise<number> {
-        logger.debug('getting user count');
-        return this.dao.count();
-    }
-
-    getAllMembers(): Promise<Member[]> {
-        logger.debug('getting all users');
-        return this.dao.findAll();
-    }
-
-    getMemberById(id: string): Promise<Member> {
-        logger.debug(`Getting member with id: ${id}`)
-        return this.dao.findOneById(id);
-    }
-
-    deleteMemberById(id: string): Promise<boolean> {
-        logger.debug(`Deleting member with id: ${id}`)
-        return this.dao.deleteOneById(id);
-    }
-
-    createNewMember(member: Member): Promise<Member> {
-        if (!member) {
-            logger.error(`Requires a member to create`)
-            return Promise.reject(`Cannot create member, without a member`);
-        };
-        logger.debug('creating new member');
-        return this.dao.insertOne(member);
-    }
-
-    updateMember(id: string, member: Member): Promise<Member> {
-        if (!id || !member) {
-            logger.error(`Cannot update member with id: ${id} using object: ${JSON.stringify(member)}`)
-            return Promise.reject(`Cannot update member with id: ${id} using object: ${JSON.stringify(member)}`);
-        };
-        return this.dao.updateOne(id, member);
+    constructor(dao: BasicObjectDAO<Member>) {
+        super('member', dao);
     }
 
 }

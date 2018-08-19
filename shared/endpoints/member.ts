@@ -1,17 +1,7 @@
-import { Resource, Method, Endpoint } from "./endpoints";
+import { Method } from "./endpoints";
+import { BasicResourceIf } from "./basic";
 
-interface MemberResourceIf extends Resource {
-  endpoints: {
-    ALL: Endpoint,
-    COUNT: Endpoint,
-    ADD: Endpoint,
-    GET_BY_ID: Endpoint,
-    UPDATE: Endpoint,
-    DELETE: Endpoint,
-  }
-}
-
-export const MemberResourceConfig: MemberResourceIf = {
+export const MemberResourceConfig: BasicResourceIf = {
   name: 'Member',
   baseUrl: '/api/member',
   endpoints: {

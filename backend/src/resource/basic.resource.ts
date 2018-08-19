@@ -1,17 +1,15 @@
-import MemberService from '../service/member.service';
-import BasicDAO from '../dao/basic.dao';
 import { Router } from 'express-serve-static-core';
 import logger from '../logger';
-import { Member } from '../../../shared/model/member';
-import { MemberResourceConfig } from '../../../shared/endpoints/member';
+import BasicService from '../service/basic.service';
+import { BasicResourceIf } from '../../../shared/endpoints/basic';
 
-class MemberResource {
-  public memberService = new MemberService(new BasicDAO<Member>('members'));
+class BasicResource<T> {
+  public service: BasicService<T>;
 
-  constructor(router: Router) {
-    const path = MemberResourceConfig.baseUrl;
-    const ePs = MemberResourceConfig.endpoints;
-    logger.info(`Binding MemberResource to: '${path}'`)
+  constructor(name: string, config: BasicResourceIf, router: Router) {
+    const path = config.baseUrl;
+    const ePs = config.endpoints;
+    logger.info(`Binding ${name}Resource to: '${path}'`)
     router[ePs.ALL.method](`${path}${ePs.ALL.path}`, this.getAll.bind(this));
     router[ePs.COUNT.method](`${path}${ePs.COUNT.path}`, this.count.bind(this));
     router[ePs.ADD.method](`${path}${ePs.ADD.path}`, this.addNew.bind(this));
@@ -21,7 +19,7 @@ class MemberResource {
   };
 
   count(req, res) {
-    this.memberService.getCount()
+    this.service.getCount()
       .then(data => res.status(200).json(data))
       .catch(e => {
         res.sendStatus(500);
@@ -30,7 +28,7 @@ class MemberResource {
   }
 
   getAll(req, res) {
-    this.memberService.getAll()
+    this.service.getAll()
       .then(data => res.status(200).json(data))
       .catch(e => {
         res.sendStatus(500);
@@ -39,7 +37,7 @@ class MemberResource {
   }
 
   getOneById(req, res) {
-    this.memberService.getById(req.params.id)
+    this.service.getById(req.params.id)
       .then(data => res.status(200).json(data))
       .catch(e => {
         res.sendStatus(500);
@@ -48,7 +46,7 @@ class MemberResource {
   }
 
   deleteOneById(req, res) {
-    this.memberService.deleteById(req.params.id)
+    this.service.deleteById(req.params.id)
       .then(data => res.status(200).json(data))
       .catch(e => {
         res.sendStatus(500);
@@ -57,7 +55,7 @@ class MemberResource {
   }
 
   addNew(req, res) {
-    this.memberService.createNew(req.body as Member)
+    this.service.createNew(req.body as T)
       .then(data => res.status(200).json(data))
       .catch(e => {
         res.sendStatus(500);
@@ -66,7 +64,7 @@ class MemberResource {
   }
 
   update(req, res) {
-    this.memberService.updateById(req.params.id, req.body as Member)
+    this.service.updateById(req.params.id, req.body as T)
       .then(data => res.status(200).json(data))
       .catch(e => {
         res.sendStatus(500);
@@ -76,4 +74,4 @@ class MemberResource {
 
 }
 
-export default MemberResource;
+export default BasicResource;
