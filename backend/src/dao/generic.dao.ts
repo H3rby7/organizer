@@ -1,17 +1,18 @@
 import { Collection, ObjectID } from "mongodb";
 import DbService from "../db.service";
-import { Member } from "../../../shared/model/member";
-import logger from '../logger';
+import { TypeWithID } from '../../../shared/model/typeWithId';
 
-export const COLLECTION_NAME = "members"
+class BasicObjectDAO<T> {
 
-class MemberDAO {
+    constructor(protected collectionName: string) {
+
+    }
 
     count(): Promise<number> {
         return this.collection().countDocuments();
     }
 
-    findOneById(id: string): Promise<Member> {
+    findOneById(id: string): Promise<T> {
         return this.collection().findOne(new ObjectID(id));
     }
 
@@ -26,27 +27,32 @@ class MemberDAO {
         .catch(err => Promise.reject(err));
     }
 
-    findAll(): Promise<Member[]> {
+    findAll(): Promise<T[]> {
         return this.collection().find({}).toArray();
     }
 
-    insertMember(member: Member): Promise<Member> {
-        return this.collection().insertOne(member)
+    
+    insertOne(basicObject: T): Promise<T> {
+        return this.collection().insertOne(basicObject)
             .then(res =>  this.collection().findOne({_id: res.insertedId}))
             .catch(err => Promise.reject(err));
     }
 
-    updateMember(id: string, member: Member): Promise<Member> {
-        delete member._id;
-        return this.collection().findOneAndUpdate({_id: new ObjectID(id)}, {$set: member}, {returnOriginal: false})
+    
+    updateOne(id: string, basicObject: TypeWithID): Promise<T> {
+        if (basicObject._id) {
+            delete basicObject._id;
+        }
+        return this.collection().findOneAndUpdate({_id: new ObjectID(id)}, {$set: basicObject}, {returnOriginal: false})
             .then(res =>  Promise.resolve(res.value))
             .catch(err => Promise.reject(err));
     }
 
     private collection(): Collection {
-        return DbService.getCollection(COLLECTION_NAME);
+        return DbService.getCollection(this.collectionName);
     }
 
 }
 
-export default MemberDAO;
+
+export default BasicObjectDAO;

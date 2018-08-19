@@ -23,7 +23,7 @@
           <td>{{member.phone}}</td>
           <td>{{member.food}}</td>
           <td>{{member.notes}}</td>
-          <td *ngIf="showControls">
+          <td *ngIf="showControls" class="controls">
             <button class="btn btn-warning" (click)="editMember(member)">edit</button>
             <button class="btn btn-danger" (click)="deleteMember(member)">delete</button>
           </td>

@@ -1,5 +1,8 @@
+import { TypeWithID } from './typeWithId';
 
-export class Member {
+export class Member implements TypeWithID {
+    public _id?: string;
+    
     constructor(
         public name: string,
         public status?: string,
@@ -7,6 +10,5 @@ export class Member {
         public phone?: string,
         public food?: string,
         public notes?: string,
-        public _id?: string
     ) {}
 }

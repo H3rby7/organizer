@@ -1,13 +1,12 @@
-import * as express from 'express'
 import MemberService from '../service/member.service';
-import MemberDAO from '../dao/member.dao';
+import BasicObjectDAO from '../dao/generic.dao';
 import { Router } from 'express-serve-static-core';
 import logger from '../logger';
 import { Member } from '../../../shared/model/member';
 import { MemberResourceConfig } from '../../../shared/endpoints/member';
 
 class MemberResource {
-  public memberService = new MemberService(new MemberDAO());
+  public memberService = new MemberService(new BasicObjectDAO<Member>('members'));
 
   constructor(router: Router) {
     const path = MemberResourceConfig.baseUrl;

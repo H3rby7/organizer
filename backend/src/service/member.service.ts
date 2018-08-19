@@ -1,10 +1,10 @@
-import MemberDAO from "../dao/member.dao";
+import BasicObjectDAO from '../dao/generic.dao';
 import { Member } from "../../../shared/model/member";
 import logger from '../logger';
 
 class MemberService {
 
-    constructor(private readonly dao: MemberDAO) {
+    constructor(private readonly dao: BasicObjectDAO<Member>) {
 
     }
 
@@ -34,7 +34,7 @@ class MemberService {
             return Promise.reject(`Cannot create member, without a member`);
         };
         logger.debug('creating new member');
-        return this.dao.insertMember(member);
+        return this.dao.insertOne(member);
     }
 
     updateMember(id: string, member: Member): Promise<Member> {
@@ -42,7 +42,7 @@ class MemberService {
             logger.error(`Cannot update member with id: ${id} using object: ${JSON.stringify(member)}`)
             return Promise.reject(`Cannot update member with id: ${id} using object: ${JSON.stringify(member)}`);
         };
-        return this.dao.updateMember(id, member);
+        return this.dao.updateOne(id, member);
     }
 
 }

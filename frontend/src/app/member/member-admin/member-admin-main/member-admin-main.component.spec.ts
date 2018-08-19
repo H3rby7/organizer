@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MemberAdminComponent } from './member-admin-main.component';
-import { MemberListComponent } from '../member-list/member-list.component';
 import { MemberAdminService } from '../member-admin.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
+import { MemberCommonModule } from '../../member-common/member-common.module';
 
 describe('MemberAdminDashboardComponent', () => {
   let component: MemberAdminComponent;
@@ -12,9 +12,9 @@ describe('MemberAdminDashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, FormsModule],
+      imports: [HttpClientTestingModule, FormsModule, MemberCommonModule],
       providers: [MemberAdminService],
-      declarations: [ MemberAdminComponent, MemberListComponent ]
+      declarations: [ MemberAdminComponent ]
     })
     .compileComponents();
   }));

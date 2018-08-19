@@ -1,6 +1,4 @@
 import * as express from 'express'
-import MemberService from './service/member.service';
-import MemberDAO from './dao/member.dao';
 import MemberResource from './resource/member.resource';
 import middleware from './middleware';
 import logger from './logger';
@@ -8,7 +6,6 @@ import logger from './logger';
 
 class App {
   public express
-  public memberService = new MemberService(new MemberDAO());
 
   constructor() {
     this.initialize();
