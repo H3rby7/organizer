@@ -3,13 +3,13 @@ import logger from '../logger';
 import BasicService from '../service/basic.service';
 import { BasicResourceIf } from '../../../shared/endpoints/basic';
 
-class BasicResource<T> {
+abstract class BasicResource<T> {
   public service: BasicService<T>;
 
-  constructor(name: string, config: BasicResourceIf, router: Router) {
+  constructor(config: BasicResourceIf, router: Router) {
     const path = config.baseUrl;
     const ePs = config.endpoints;
-    logger.info(`Binding ${name}Resource to: '${path}'`)
+    logger.info(`Binding ${config.name}Resource to: '${path}'`)
     router[ePs.ALL.method](`${path}${ePs.ALL.path}`, this.getAll.bind(this));
     router[ePs.COUNT.method](`${path}${ePs.COUNT.path}`, this.count.bind(this));
     router[ePs.ADD.method](`${path}${ePs.ADD.path}`, this.addNew.bind(this));
