@@ -1,8 +1,8 @@
 import { BasicResourceIf, ENDPOINT_ALL, ENDPOINT_COUNT, ENDPOINT_ADD, ENDPOINT_GET_BY_ID, ENDPOINT_UPDATE, ENDPOINT_DELETE } from "./basic";
 
-export const MemberResourceConfig: BasicResourceIf = {
-  name: 'Member',
-  baseUrl: '/api/member',
+export const ShowsResourceConfig: BasicResourceIf = {
+  name: 'Show',
+  baseUrl: '/api/shows',
   endpoints: {
     ALL: ENDPOINT_ALL,
     COUNT: ENDPOINT_COUNT,

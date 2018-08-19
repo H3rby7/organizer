@@ -1,16 +1,17 @@
-http://localhost:3000/user
+
+http://localhost:3000/api/member
 
 ###
 
-http://localhost:3000/user/count
+http://localhost:3000/api/member/count
 
 ###
 
-http://localhost:3000/user/5b70ca1b9031ed00c046a903
+http://localhost:3000/api/member/5b70ca1b9031ed00c046a903
 
 ###
 
-POST http://localhost:3000/user/add
+POST http://localhost:3000/api/member/add
 content-type: application/json
 
 {
@@ -19,7 +20,7 @@ content-type: application/json
 
 ###
 
-PUT http://localhost:3000/user/5b70ca1b9031ed00c046a903
+PUT http://localhost:3000/api/member/5b70ca1b9031ed00c046a903
 content-type: application/json
 
 {
