@@ -1,17 +1,23 @@
 import { expect } from 'chai';
 import 'mocha';
 import { mock } from 'sinon'
-import ShowService from './shows.service';
+import ParticipationService from './participation.service';
 import BasicDAO from '../dao/basic.dao';
+import { Participation } from '../../../shared/model/participation';
+import MemberService from './member.service';
+import { Member } from '../../../shared/model/member';
+import ShowsService from './shows.service';
 import { Show } from '../../../shared/model/show';
 
-describe('ShowService', () => {
-    let service: ShowService;
-    let dao = new BasicDAO<Show>("show");
+describe('ParticipationService', () => {
+    let service: ParticipationService;
+    const memberService = new MemberService(new BasicDAO<Member>('members'));
+    const showsService = new ShowsService(new BasicDAO<Show>('shows'));
+    let dao = new BasicDAO<Participation>("participation");
     let mockDao = mock(dao);
 
     beforeEach(() => {
-        service = new ShowService(dao);
+        service = new ParticipationService(dao, memberService, showsService);
     })
 
     it('get showcount should call dao', () => {

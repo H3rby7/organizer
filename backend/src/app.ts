@@ -3,6 +3,7 @@ import MemberResource from './resource/member.resource';
 import middleware from './middleware';
 import logger from './logger';
 import ShowsResource from './resource/shows.resource';
+import ParticipationResource from './resource/participation.resource';
 
 
 class App {
@@ -28,6 +29,7 @@ class App {
     });
     new MemberResource(router);
     new ShowsResource(router);
+    new ParticipationResource(router);
     middleware(this.express);
     this.express.use('/', router);
   }
