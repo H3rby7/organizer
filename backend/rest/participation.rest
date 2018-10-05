@@ -11,5 +11,9 @@ content-type: application/json
 
 {
     "memberId": "5b783d6db690b82158c1c5fc",
-    "eventId": "5bb7d8bdd663450868c1ae14"
+    "eventId": "5bb7d8bdd663450868c1ae14",
+    "eventType": "show"
 }
+
+###
+DELETE http://localhost:3000/api/participation/5bb7df27a4bd460fe4708704

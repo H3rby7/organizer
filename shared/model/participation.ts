@@ -7,5 +7,6 @@ export class Participation implements TypeWithID {
         public memberId: string,
         public status: string,
         public eventId: string,
+        public eventType: string,
     ) { }
 }
