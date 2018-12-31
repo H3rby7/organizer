@@ -2,7 +2,7 @@ import BasicObjectDAO from '../dao/basic.dao';
 import { Participation } from "../../../shared/model/participation";
 import BasicService from './basic.service';
 import MemberService from './member.service';
-import ShowsService from './shows.service';
+import EventService from './shows.service';
 import logger from '../logger';
 
 class ParticipationService extends BasicService<Participation> {
@@ -10,7 +10,7 @@ class ParticipationService extends BasicService<Participation> {
     constructor(
         dao: BasicObjectDAO<Participation>,
         protected readonly memberService: MemberService,
-        protected readonly showService: ShowsService,
+        protected readonly showService: EventService,
     ) {
         super('participation', dao);
     }

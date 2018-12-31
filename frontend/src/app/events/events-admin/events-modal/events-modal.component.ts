@@ -13,7 +13,7 @@ export class EventModalComponent implements OnInit {
 
   isUpdate = false;
 
-  private event = new Event();
+  private event = new Event(undefined, undefined, undefined, new Date(), new Date());
 
   @Input("event")
   set setEvent(nextEvent: Event) {

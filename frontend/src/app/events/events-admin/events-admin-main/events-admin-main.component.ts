@@ -36,9 +36,16 @@ export class EventAdminComponent implements OnInit {
     modal.componentInstance.setEvent = event;
     modal.result
       .then(updateEvent => {
+        event.type = updateEvent.type;
+        event.agenda = updateEvent.agenda;
         event.location = updateEvent.location;
         event.startDate = updateEvent.startDate;
         event.endDate = updateEvent.endDate;
+        event.organizerId = updateEvent.organizerId;
+        event.notes = updateEvent.notes;
+        event.handout = updateEvent.handout;
+        event.ticketLink = updateEvent.ticketLink;
+        event.status = updateEvent.status;
       })
       .catch(noop);
   }

@@ -7,19 +7,68 @@
 <form (ngSubmit)="onConfirm()" #newEventForm="ngForm">
   <div class="modal-body">
     <div class="form-group">
-      <label for="event-name">Location</label>
-      <input type="text" [(ngModel)]="event.location" id="event-Location" name="event-Location" class="form-control" placeholder="College" required>
+      <label for="event-type">Type</label>
+      <select [(ngModel)]="event.type" id="event-type" name="event-type" class="form-control" required>
+        <option [ngValue]="undefined" selected disabled>- Select Type -</option>
+        <option value="SHOW">Show</option>
+        <option value="PRACTICE">Practice</option>
+      </select>
     </div>
-    <div class="form-group">
-      <label for="event-start">Start</label>
-      <input type="text" [(ngModel)]="event.startDate" id="event-start" name="event-start" class="form-control" placeholder="01.01.2011" required>
-    </div>
-    <div class="form-group">
-      <label for="event-end">End</label>
-      <input type="text" [(ngModel)]="event.endDate" id="event-end" name="event-end" class="form-control" placeholder="02.01.2011">
-    </div>
+    <ng-container *ngIf="event.type">
+      <div class="form-group">
+        <ng-container [ngTemplateOutlet]="agenda"></ng-container>
+      </div>
+      <div class="form-group">
+        <label for="event-location">Location</label>
+        <input type="text" [(ngModel)]="event.location" id="event-location" name="event-location" class="form-control" placeholder="College"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="event-start">Start</label>
+        <input type="text" [(ngModel)]="event.startDate" id="event-start" name="event-start" class="form-control" placeholder="01.01.2011"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="event-end">End</label>
+        <input type="text" [(ngModel)]="event.endDate" id="event-end" name="event-end" class="form-control" placeholder="02.01.2011">
+      </div>
+      <div class="form-group">
+        <label for="event-organizer">Organizer</label>
+        <input type="text" [(ngModel)]="event.organizerId" id="event-organizer" name="event-organizer" class="form-control" placeholder="wrelvnwet4564z6ljsat9z64">
+      </div>
+      <div class="form-group">
+        <ng-container [ngTemplateOutlet]="show" *ngIf="event.type === 'SHOW'"></ng-container>
+        <ng-container [ngTemplateOutlet]="practice" *ngIf="event.type === 'PRACTICE'"></ng-container>
+      </div>
+      <div class="form-group">
+        <label for="event-notes">Notes</label>
+        <textarea [(ngModel)]="event.notes" name="event-notes" class="form-control" id="event-notes" placeholder="nothing else..."></textarea>
+      </div>
+    </ng-container>
   </div>
   <div class="modal-footer">
-    <input type="submit" class="btn btn-outline-dark" [value]="isUpdate ? 'Update' : 'Create'" [disabled]="!isInputValid()"/>
+    <input type="submit" class="btn btn-outline-dark" [value]="isUpdate ? 'Update' : 'Create'" [disabled]="!isInputValid()" />
   </div>
 </form>
+
+<ng-template #agenda>
+  <ng-container *ngIf="event.type === 'SHOW'">
+    <label for="event-agenda">Format</label>
+    <input type="text" [(ngModel)]="event.agenda" id="event-agenda" name="event-agenda" class="form-control" placeholder="Show"
+      required>
+  </ng-container>
+  <ng-container *ngIf="event.type === 'PRACTICE'">
+    <label for="event-agenda">Topic</label>
+    <input type="text" [(ngModel)]="event.agenda" id="event-agenda" name="event-agenda" class="form-control" placeholder="Heroes Journey">
+  </ng-container>
+</ng-template>
+
+<ng-template #show>
+  <label for="event-ticketLink">Ticketlink</label>
+  <input type="text" [(ngModel)]="event.ticketLink" id="event-ticketLink" name="event-ticketLink" class="form-control" placeholder="some.host.com/your/url">
+</ng-template>
+
+<ng-template #practice>
+  <label for="event-handout">Handout</label>
+  <input type="text" [(ngModel)]="event.handout" id="event-handout" name="event-handout" class="form-control" placeholder="some.host.com/your/url">
+</ng-template>

@@ -8,15 +8,21 @@
     <div class="col-12">
       <table class="table">
         <tr>
+          <th>Agenda</th>
+          <th>Type</th>
           <th>Location</th>
           <th>Start</th>
           <th>End</th>
+          <th>Notes</th>
           <th *ngIf="showControls">Actions</th>
         </tr>
         <tr *ngFor="let event of events">
+          <td>{{event.agenda}}</td>
+          <td>{{event.type}}</td>
           <td>{{event.location}}</td>
           <td>{{event.startDate}}</td>
           <td>{{event.endDate}}</td>
+          <td>{{event.notes}}</td>
           <td *ngIf="showControls" class="controls">
             <button class="btn btn-warning" (click)="editEvent(event)">edit</button>
             <button class="btn btn-danger" (click)="deleteEvent(event)">delete</button>

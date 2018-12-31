@@ -6,12 +6,12 @@ import ParticipationService from '../service/participation.service';
 import { Participation } from "../../../shared/model/participation";
 import MemberService from '../service/member.service';
 import { Member } from '../../../shared/model/member';
-import { Show } from '../../../shared/model/show';
-import ShowsService from '../service/shows.service';
+import { Event } from '../../../shared/model/event';
+import EventService from '../service/shows.service';
 
 class ParticipationResource extends BasicResource<Participation> {
   memberService = new MemberService(new BasicDAO<Member>('members'));
-  showService = new ShowsService(new BasicDAO<Show>('shows'));
+  showService = new EventService(new BasicDAO<Event>('events'));
   public service = new ParticipationService(new BasicDAO<Participation>('participation'), this.memberService, this.showService);
 
   constructor(router: Router) {

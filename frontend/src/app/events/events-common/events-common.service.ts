@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Event } from '../../../../../shared/model/event'
-import { ShowsResourceConfig } from '../../../../../shared/endpoints/shows';
+import { EventResourceConfig } from '../../../../../shared/endpoints/events';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -9,8 +9,8 @@ import { environment } from '../../../environments/environment';
 })
 export class EventCommonService {
 
-  protected apiBaseUrl = environment.backendApiUrl + ShowsResourceConfig.baseUrl;
-  protected ePs = ShowsResourceConfig.endpoints;
+  protected apiBaseUrl = environment.backendApiUrl + EventResourceConfig.baseUrl;
+  protected ePs = EventResourceConfig.endpoints;
 
   constructor(protected readonly http: HttpClient) { }
 

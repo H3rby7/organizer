@@ -1,13 +1,13 @@
 import BasicObjectDAO from '../dao/basic.dao';
-import { Show } from "../../../shared/model/show";
+import { Event } from "../../../shared/model/event";
 import BasicService from './basic.service';
 
-class ShowsService extends BasicService<Show> {
+class EventService extends BasicService<Event> {
 
-    constructor(dao: BasicObjectDAO<Show>) {
-        super('show', dao);
+    constructor(dao: BasicObjectDAO<Event>) {
+        super('event', dao);
     }
 
 }
 
-export default ShowsService;
+export default EventService;
