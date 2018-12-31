@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { MemberAdminModule } from '../../member/member-admin/member-admin.module';
 import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
+import { EventAdminModule } from '../../events/events-admin/events-admin.module';
 
 describe('AdminMainComponent', () => {
   let component: AdminMainComponent;
@@ -13,7 +14,13 @@ describe('AdminMainComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AdminRoutingModule, RouterTestingModule, NgbTabsetModule, MemberAdminModule],
+      imports: [
+        AdminRoutingModule,
+        RouterTestingModule,
+        NgbTabsetModule,
+        MemberAdminModule,
+        EventAdminModule
+      ],
       declarations: [AdminMainComponent, AdminDashboardComponent]
     })
       .compileComponents();

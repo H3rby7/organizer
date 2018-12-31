@@ -6,6 +6,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AdminMainComponent } from './admin-main/admin-main.component';
+import { EventAdminModule } from '../events/events-admin/events-admin.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { AdminMainComponent } from './admin-main/admin-main.component';
     // custom
     AdminRoutingModule,
     MemberAdminModule,
+    EventAdminModule,
   ],
   declarations: [
     AdminDashboardComponent,

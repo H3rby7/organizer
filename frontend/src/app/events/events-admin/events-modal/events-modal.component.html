@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{isUpdate ? 'Update Event' : 'Create Event'}}</h4>
+  <button type="button" class="btn close" aria-label="Close" (click)="onDismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form (ngSubmit)="onConfirm()" #newEventForm="ngForm">
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="event-name">Location</label>
+      <input type="text" [(ngModel)]="event.Location" id="event-Location" name="event-Location" class="form-control" placeholder="College" required>
+    </div>
+    <div class="form-group">
+      <label for="event-start">Start</label>
+      <input type="text" [(ngModel)]="event.start" id="event-start" name="event-start" class="form-control" placeholder="01.01.2011" required>
+    </div>
+    <div class="form-group">
+      <label for="event-end">End</label>
+      <input type="text" [(ngModel)]="event.end" id="event-end" name="event-end" class="form-control" placeholder="02.01.2011">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input type="submit" class="btn btn-outline-dark" [value]="isUpdate ? 'Update' : 'Create'" [disabled]="!isInputValid()"/>
+  </div>
+</form>

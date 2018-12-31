@@ -1,0 +1,28 @@
+<div class="event-list">
+  <div class="row">
+    <div class="col-12">
+      Space for filters
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <tr>
+          <th>Location</th>
+          <th>Start</th>
+          <th>End</th>
+          <th *ngIf="showControls">Actions</th>
+        </tr>
+        <tr *ngFor="let event of events">
+          <td>{{event.location}}</td>
+          <td>{{event.startDate}}</td>
+          <td>{{event.endDate}}</td>
+          <td *ngIf="showControls" class="controls">
+            <button class="btn btn-warning" (click)="editEvent(event)">edit</button>
+            <button class="btn btn-danger" (click)="deleteEvent(event)">delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

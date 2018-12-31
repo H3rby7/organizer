@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { MemberAdminComponent } from '../member/member-admin/member-admin-main/member-admin-main.component';
 import { AdminMainComponent } from './admin-main/admin-main.component';
+import { EventAdminComponent } from '../events/events-admin/events-admin-main/events-admin-main.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'member',
         component: MemberAdminComponent
+      },
+      {
+        path: 'events',
+        component: EventAdminComponent
       },
       {
         path: 'dashboard',
