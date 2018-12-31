@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { EventAdminService } from '../events-admin.service';
 import { Event } from '../../../../../../shared/model/event';
 import { cp } from '../../../../../../shared/util/copy';
@@ -13,7 +13,7 @@ export class EventModalComponent implements OnInit {
 
   isUpdate = false;
 
-  private event = new Event(undefined, undefined, undefined, new Date(), new Date());
+  event = new Event(undefined, undefined, undefined, new Date(), new Date());
 
   @Input("event")
   set setEvent(nextEvent: Event) {

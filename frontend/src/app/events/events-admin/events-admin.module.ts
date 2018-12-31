@@ -5,7 +5,7 @@ import { EventAdminService } from './events-admin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EventAdminComponent } from './events-admin-main/events-admin-main.component';
 import { EventAdminRoutingModule } from './events-admin-routing.module';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { EventModalComponent } from './events-modal/events-modal.component';
 
@@ -15,6 +15,7 @@ import { EventModalComponent } from './events-modal/events-modal.component';
     HttpClientModule,
     FormsModule,
     NgbModalModule,
+    NgbDatepickerModule,
     EventCommonModule,
     EventAdminRoutingModule
   ],

@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventModalComponent } from './events-modal.component';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventAdminService } from '../events-admin.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 
-describe('AddMemberModalComponent', () => {
+describe('AddEventModalComponent', () => {
   let component: EventModalComponent;
   let fixture: ComponentFixture<EventModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, FormsModule],
+      imports: [HttpClientTestingModule, FormsModule, NgbDatepickerModule],
       providers: [NgbActiveModal, EventAdminService],
       declarations: [EventModalComponent]
     })
