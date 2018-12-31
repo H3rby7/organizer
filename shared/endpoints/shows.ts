@@ -2,7 +2,7 @@ import { BasicResourceIf, ENDPOINT_ALL, ENDPOINT_COUNT, ENDPOINT_ADD, ENDPOINT_G
 
 export const ShowsResourceConfig: BasicResourceIf = {
   name: 'Show',
-  baseUrl: '/api/shows',
+  baseUrl: '/api/events/shows',
   endpoints: {
     ALL: ENDPOINT_ALL,
     COUNT: ENDPOINT_COUNT,

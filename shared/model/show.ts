@@ -12,6 +12,6 @@ export class Show extends Event {
         public endDate?: Date,
         public location?: string,
     ) {
-        super(startDate, endDate, location);
+        super("SHOW", startDate, endDate, location);
     }
 }

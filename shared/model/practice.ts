@@ -6,4 +6,8 @@ export class Practice extends Event {
     public status?: string;
     public handout?: string;
     public teacher?: Member;
+
+    constructor() {
+        super("PRACTICE")
+    }
 }
