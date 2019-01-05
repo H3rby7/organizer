@@ -1,4 +1,4 @@
-import { Component, ViewChild, forwardRef } from '@angular/core';
+import { Component, ViewChild, forwardRef, Input } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, } from '@angular/forms';
 
@@ -19,7 +19,12 @@ const DATE_TIME_PICKER_VALUE_ACCESSOR = {
 })
 export class DateTimePickerComponent implements ControlValueAccessor {
 
+  @Input()
   id = IDENTIFIER + (count++);
+
+  @Input()
+  name = this.id;
+
   required = true;
   disabled = false;
 
@@ -47,11 +52,11 @@ export class DateTimePickerComponent implements ControlValueAccessor {
       return;
     }
     input = new Date(input);
-    this.datePickerDate.day = input.getDate();
-    this.datePickerDate.month = input.getMonth() + 1;
-    this.datePickerDate.year = input.getFullYear();
-    const h = input.getHours();
-    const m = input.getMinutes();
+    this.datePickerDate.day = input.getUTCDate();
+    this.datePickerDate.month = input.getUTCMonth() + 1;
+    this.datePickerDate.year = input.getUTCFullYear();
+    const h = input.getUTCHours();
+    const m = input.getUTCMinutes();
     this.time = `${h < 10 ? '0' + h : h}:${m < 10 ? '0' + m : m}`;
   }
 
@@ -72,12 +77,14 @@ export class DateTimePickerComponent implements ControlValueAccessor {
       return null;
     }
     const nextDate = new Date();
-    nextDate.setDate(this.datePickerDate.day);
-    nextDate.setMonth(this.datePickerDate.month - 1);
-    nextDate.setFullYear(this.datePickerDate.year);
+    nextDate.setUTCDate(this.datePickerDate.day);
+    nextDate.setUTCMonth(this.datePickerDate.month - 1);
+    nextDate.setUTCFullYear(this.datePickerDate.year);
     const times = this.time.split(':');
-    nextDate.setHours(parseInt(times[0], 10));
-    nextDate.setMinutes(parseInt(times[1], 10));
+    nextDate.setUTCHours(parseInt(times[0], 10));
+    nextDate.setUTCMinutes(parseInt(times[1], 10));
+    nextDate.setUTCSeconds(0);
+    nextDate.setUTCMilliseconds(0);
     return nextDate;
   }
 
