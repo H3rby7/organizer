@@ -1,0 +1,14 @@
+http://localhost:3000/api/events
+
+###
+
+http://localhost:3000/api/events/count
+
+###
+
+POST http://localhost:3000/api/events/add
+content-type: application/json
+
+{
+    "name": "Kanonenfutternacht"
+}
