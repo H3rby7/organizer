@@ -25,23 +25,11 @@
       </div>
       <div class="form-group">
         <label for="event-start">Start</label>
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd" name="event-start" [(ngModel)]="event.startDate" ngbDatepicker #startDP="ngbDatepicker"
-            required>
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="startDP.toggle()" type="button"></button>
-          </div>
-        </div>
+        <app-date-time-picker [(ngModel)]="event.startDate" name="event-start"></app-date-time-picker>
       </div>
       <div class="form-group">
         <label for="event-end">End</label>
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd" name="event-end" [(ngModel)]="event.endDate" ngbDatepicker #endDP="ngbDatepicker"
-            required>
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="endDP.toggle()" type="button"></button>
-          </div>
-        </div>
+        <app-date-time-picker [(ngModel)]="event.endDate" name="event-end"></app-date-time-picker>
       </div>
       <div class="form-group">
         <label for="event-organizer">Organizer</label>

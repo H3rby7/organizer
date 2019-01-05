@@ -8,6 +8,7 @@ import { EventAdminRoutingModule } from './events-admin-routing.module';
 import { NgbModalModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { EventModalComponent } from './events-modal/events-modal.component';
+import { DateTimePickerModule } from '../../date-time-picker/date-time-picker.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { EventModalComponent } from './events-modal/events-modal.component';
     NgbModalModule,
     NgbDatepickerModule,
     EventCommonModule,
-    EventAdminRoutingModule
+    EventAdminRoutingModule,
+    DateTimePickerModule,
   ],
   declarations: [EventAdminComponent, EventModalComponent],
   providers: [EventAdminService],

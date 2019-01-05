@@ -5,6 +5,7 @@ import { NgbActiveModal, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap'
 import { EventAdminService } from '../events-admin.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
+import { DateTimePickerModule } from '../../../date-time-picker/date-time-picker.module';
 
 describe('AddEventModalComponent', () => {
   let component: EventModalComponent;
@@ -12,7 +13,7 @@ describe('AddEventModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, FormsModule, NgbDatepickerModule],
+      imports: [HttpClientTestingModule, FormsModule, DateTimePickerModule, NgbDatepickerModule],
       providers: [NgbActiveModal, EventAdminService],
       declarations: [EventModalComponent]
     })
