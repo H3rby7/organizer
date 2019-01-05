@@ -13,7 +13,7 @@ export class EventModalComponent implements OnInit {
 
   isUpdate = false;
 
-  event = new Event(undefined, undefined, undefined, new Date(), new Date());
+  event = new Event(undefined, undefined, undefined, createDefaultdate(), createDefaultdate());
 
   @Input("event")
   set setEvent(nextEvent: Event) {
@@ -59,4 +59,13 @@ export class EventModalComponent implements OnInit {
     console.log(err);
   }
 
+}
+
+function createDefaultdate(): Date {
+  const d = new Date();
+  d.setUTCHours(18);
+  d.setUTCMinutes(0);
+  d.setUTCSeconds(0);
+  d.setUTCMilliseconds(0);
+  return d;
 }

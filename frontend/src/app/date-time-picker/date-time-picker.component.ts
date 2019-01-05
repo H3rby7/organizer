@@ -1,6 +1,7 @@
-import { Component, ViewChild, forwardRef, Input } from '@angular/core';
+import { Component, ViewChild, forwardRef, Input, ModuleWithComponentFactories } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, } from '@angular/forms';
+import  * as Moment from 'moment/moment';
 
 let count = 1;
 const IDENTIFIER = 'datetimepicker';
@@ -47,16 +48,16 @@ export class DateTimePickerComponent implements ControlValueAccessor {
 
   /* Interface implementations to use as form component */
 
-  writeValue(input: any): void {
+  writeValue(input: Moment.MomentInput): void {
     if (!input) {
       return;
     }
-    input = new Date(input);
-    this.datePickerDate.day = input.getUTCDate();
-    this.datePickerDate.month = input.getUTCMonth() + 1;
-    this.datePickerDate.year = input.getUTCFullYear();
-    const h = input.getUTCHours();
-    const m = input.getUTCMinutes();
+    const asDate = Moment.utc(input);
+    this.datePickerDate.day = asDate.date();
+    this.datePickerDate.month = asDate.month() + 1;
+    this.datePickerDate.year = asDate.year();
+    const h = asDate.hour();
+    const m = asDate.minute();
     this.time = `${h < 10 ? '0' + h : h}:${m < 10 ? '0' + m : m}`;
   }
 
@@ -72,20 +73,20 @@ export class DateTimePickerComponent implements ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
-  dateFromData() {
+  dateFromData(): String {
     if (!this.datePickerDate || !this.time || this.time === '') {
       return null;
     }
-    const nextDate = new Date();
-    nextDate.setUTCDate(this.datePickerDate.day);
-    nextDate.setUTCMonth(this.datePickerDate.month - 1);
-    nextDate.setUTCFullYear(this.datePickerDate.year);
+    const nextDate = Moment.utc(Date.now());
     const times = this.time.split(':');
-    nextDate.setUTCHours(parseInt(times[0], 10));
-    nextDate.setUTCMinutes(parseInt(times[1], 10));
-    nextDate.setUTCSeconds(0);
-    nextDate.setUTCMilliseconds(0);
-    return nextDate;
+    nextDate.hours(parseInt(times[0], 10));
+    nextDate.minutes(parseInt(times[1], 10));
+    nextDate.seconds(0);
+    nextDate.milliseconds(0);
+    nextDate.days(this.datePickerDate.day);
+    nextDate.month(this.datePickerDate.month - 1);
+    nextDate.year(this.datePickerDate.year);
+    return nextDate.toISOString();
   }
 
 }
