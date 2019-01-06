@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import 'mocha';
 import { mock } from 'sinon'
-import { EventService } from './event.service';
+import EventService from './event.service';
 import BasicDAO from '../dao/basic.dao';
 import { Event } from '../../../shared/model/event';
 import { DB_NAME_EVENT } from '../../constants/collection-names';
