@@ -38,7 +38,7 @@ export class MemberTypeaheadComponent implements OnInit, ControlValueAccessor {
   validatorFn = (e) => { };
 
   member: Member;
-  memberId: string = 'testmember1';
+  memberId: string;
 
   constructor(private readonly memberService: MemberCommonService) {
 
