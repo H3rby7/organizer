@@ -11,8 +11,7 @@ content-type: application/json
 
 {
     "memberId": "5b783d6db690b82158c1c5fc",
-    "eventId": "5bb7d8bdd663450868c1ae14",
-    "eventType": "show"
+    "eventId": "5bb7d8bdd663450868c1ae14"
 }
 
 ###

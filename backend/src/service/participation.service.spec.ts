@@ -6,18 +6,19 @@ import BasicDAO from '../dao/basic.dao';
 import { Participation } from '../../../shared/model/participation';
 import MemberService from './member.service';
 import { Member } from '../../../shared/model/member';
-import ShowsService from './shows.service';
-import { Show } from '../../../shared/model/show';
+import EventService from './event.service';
+import { Event } from '../../../shared/model/event';
+import { DB_NAME_MEMBER, DB_NAME_EVENT, DB_NAME_PARTICIPATION } from '../../constants/collection-names';
 
 describe('ParticipationService', () => {
     let service: ParticipationService;
-    const memberService = new MemberService(new BasicDAO<Member>('members'));
-    const showsService = new ShowsService(new BasicDAO<Show>('shows'));
-    let dao = new BasicDAO<Participation>("participation");
+    const memberService = new MemberService(new BasicDAO<Member>(DB_NAME_MEMBER));
+    const eventService = new EventService(new BasicDAO<Event>(DB_NAME_EVENT));
+    let dao = new BasicDAO<Participation>(DB_NAME_PARTICIPATION);
     let mockDao = mock(dao);
 
     beforeEach(() => {
-        service = new ParticipationService(dao, memberService, showsService);
+        service = new ParticipationService(dao, memberService, eventService);
     })
 
     it('get showcount should call dao', () => {

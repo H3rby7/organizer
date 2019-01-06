@@ -4,10 +4,11 @@ import { mock } from 'sinon'
 import MemberService from './member.service';
 import BasicDAO from '../dao/basic.dao';
 import { Member } from '../../../shared/model/member';
+import { DB_NAME_MEMBER } from '../../constants/collection-names';
 
 describe('MemberService', () => {
     let service: MemberService;
-    let dao = new BasicDAO<Member>("members");
+    let dao = new BasicDAO<Member>(DB_NAME_MEMBER);
     let mockDao = mock(dao);
 
     beforeEach(() => {

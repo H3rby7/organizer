@@ -2,17 +2,18 @@ import BasicObjectDAO from '../dao/basic.dao';
 import { Participation } from "../../../shared/model/participation";
 import BasicService from './basic.service';
 import MemberService from './member.service';
-import EventService from './shows.service';
+import EventService from './event.service';
 import logger from '../logger';
+import { DB_NAME_PARTICIPATION } from '../../constants/collection-names';
 
 class ParticipationService extends BasicService<Participation> {
 
     constructor(
         dao: BasicObjectDAO<Participation>,
         protected readonly memberService: MemberService,
-        protected readonly showService: EventService,
+        protected readonly eventService: EventService,
     ) {
-        super('participation', dao);
+        super(DB_NAME_PARTICIPATION, dao);
     }
 
     createNew(participation: Participation): Promise<Participation> {
@@ -38,16 +39,13 @@ class ParticipationService extends BasicService<Participation> {
     }
 
     checkForEventExistence(participation: Participation): Promise<boolean> {
-        if (participation.eventType === 'show') {
-            return this.showService.getById(participation.eventId)
-                .then(show => {
-                    return true;
-                })
-                .catch(err => {
-                    return false;
-                });
-        }
-        return Promise.reject(false);
+        return this.eventService.getById(participation.eventId)
+            .then(show => {
+                return true;
+            })
+            .catch(err => {
+                return false;
+            });
     }
 
 }

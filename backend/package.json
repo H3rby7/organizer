@@ -8,7 +8,7 @@
     "watch": "tsc --watch --sourceMap",
     "server": "node dist/backend/src/index.js",
     "start": "npm run build && npm run server isProd=false",
-    "test-data": "npm run build && node dist/backend/db_scripts/create-test-data.js isProd=false",
+    "test-data": "ts-node db_scripts/create-test-data.ts isProd=false",
     "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "author": "joka",
@@ -26,7 +26,7 @@
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
     "sinon": "^6.1.5",
-    "ts-node": "^7.0.0",
+    "ts-node": "^7.0.1",
     "typescript": "^3.0.1"
   },
   "dependencies": {

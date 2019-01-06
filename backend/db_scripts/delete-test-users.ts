@@ -1,6 +1,7 @@
 import { Db } from 'mongodb';
+import { DB_NAME_MEMBER } from '../constants/collection-names';
 
-const COLLECTION_NAME = 'members'
+const COLLECTION_NAME = DB_NAME_MEMBER
 
 const deleteTestMembers = (db: Db): Promise<any> => {
     const collection = db.collection(COLLECTION_NAME);

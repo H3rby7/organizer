@@ -1,17 +1,18 @@
 import { expect } from 'chai';
 import 'mocha';
 import { mock } from 'sinon'
-import ShowService from './shows.service';
+import { EventService } from './event.service';
 import BasicDAO from '../dao/basic.dao';
-import { Show } from '../../../shared/model/show';
+import { Event } from '../../../shared/model/event';
+import { DB_NAME_EVENT } from '../../constants/collection-names';
 
-describe('ShowService', () => {
-    let service: ShowService;
-    let dao = new BasicDAO<Show>("show");
+describe('Event Service', () => {
+    let service: EventService;
+    let dao = new BasicDAO<Event>(DB_NAME_EVENT);
     let mockDao = mock(dao);
 
     beforeEach(() => {
-        service = new ShowService(dao);
+        service = new EventService(dao);
     })
 
     it('get showcount should call dao', () => {

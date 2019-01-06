@@ -1,7 +1,8 @@
 import { Member } from '../../shared/model/member';
 import { Db } from 'mongodb';
+import { DB_NAME_MEMBER } from '../constants/collection-names';
 
-const COLLECTION_NAME = 'members'
+const COLLECTION_NAME = DB_NAME_MEMBER;
 
 const insertTestMembers = (db: Db): Promise<any> => {
   const collection = db.collection(COLLECTION_NAME);
