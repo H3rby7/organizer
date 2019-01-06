@@ -70,14 +70,14 @@ export class EventModalComponent implements OnInit {
 }
 
 function createDefaultEvent(): Event {
-  const e = new Event(undefined, undefined, undefined, createDefaultdate(), createDefaultdate());
+  const e = new Event(undefined, undefined, undefined, createDefaultdate(), createDefaultdate(20));
   e.organizerId = '';
   return e;
 }
 
-function createDefaultdate(): Date {
+function createDefaultdate(hour = 18): Date {
   const d = Moment.utc();
-  d.hour(18);
+  d.hour(hour);
   d.minute(0);
   d.second(0);
   d.millisecond(0);
