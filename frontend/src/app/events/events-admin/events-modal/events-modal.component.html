@@ -10,8 +10,8 @@
       <label for="event-type">Type</label>
       <select [(ngModel)]="event.type" id="event-type" name="event-type" class="form-control" required>
         <option [ngValue]="undefined" selected disabled>- Select Type -</option>
-        <option value="SHOW">Show</option>
-        <option value="PRACTICE">Practice</option>
+        <option [value]="TYPE_SHOW">Show</option>
+        <option [value]="TYPE_PRACTICE">Practice</option>
       </select>
     </div>
     <ng-container *ngIf="event.type">
@@ -33,11 +33,11 @@
       </div>
       <div class="form-group">
         <label for="event-organizer">Organizer</label>
-        <input type="text" [(ngModel)]="event.organizerId" id="event-organizer" name="event-organizer" class="form-control" placeholder="wrelvnwet4564z6ljsat9z64">
+        <app-member-typeahead [(ngModel)]="event.organizerId" id="event-organizer" name="event-organizer"></app-member-typeahead>
       </div>
       <div class="form-group">
-        <ng-container [ngTemplateOutlet]="show" *ngIf="event.type === 'SHOW'"></ng-container>
-        <ng-container [ngTemplateOutlet]="practice" *ngIf="event.type === 'PRACTICE'"></ng-container>
+        <ng-container [ngTemplateOutlet]="show" *ngIf="event.type === TYPE_SHOW"></ng-container>
+        <ng-container [ngTemplateOutlet]="practice" *ngIf="event.type === TYPE_PRACTICE"></ng-container>
       </div>
       <div class="form-group">
         <label for="event-notes">Notes</label>
@@ -51,12 +51,12 @@
 </form>
 
 <ng-template #agenda>
-  <ng-container *ngIf="event.type === 'SHOW'">
+  <ng-container *ngIf="event.type === TYPE_SHOW">
     <label for="event-agenda">Format</label>
     <input type="text" [(ngModel)]="event.agenda" id="event-agenda" name="event-agenda" class="form-control" placeholder="Show"
       required>
   </ng-container>
-  <ng-container *ngIf="event.type === 'PRACTICE'">
+  <ng-container *ngIf="event.type === TYPE_PRACTICE">
     <label for="event-agenda">Topic</label>
     <input type="text" [(ngModel)]="event.agenda" id="event-agenda" name="event-agenda" class="form-control" placeholder="Heroes Journey">
   </ng-container>

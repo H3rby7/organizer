@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { NgbActiveModal, NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { EventAdminService } from '../events-admin.service';
 import { Event } from '../../../../../../shared/model/event';
+import { EVENT_TYPE_SHOW, EVENT_TYPE_PRACTICE } from '../../../../../../shared/constants/event-types';
 import { cp } from '../../../../../../shared/util/copy';
+import * as Moment from 'moment';
 
 @Component({
   selector: 'app-events-modal',
@@ -11,9 +13,12 @@ import { cp } from '../../../../../../shared/util/copy';
 })
 export class EventModalComponent implements OnInit {
 
-  isUpdate = false;
 
-  event = new Event(undefined, undefined, undefined, createDefaultdate(), createDefaultdate());
+  TYPE_SHOW = EVENT_TYPE_SHOW;
+  TYPE_PRACTICE = EVENT_TYPE_PRACTICE;
+
+  isUpdate = false;
+  event = createDefaultEvent();
 
   @Input("event")
   set setEvent(nextEvent: Event) {
@@ -21,11 +26,14 @@ export class EventModalComponent implements OnInit {
     this.isUpdate = true;
   }
 
-  constructor(private readonly activeModal: NgbActiveModal,
-    private readonly service: EventAdminService) { }
+  constructor(
+    private readonly activeModal: NgbActiveModal,
+    private readonly eventService: EventAdminService,
+  ) { }
 
   ngOnInit() {
   }
+
 
   isInputValid(): boolean {
     return true;
@@ -37,7 +45,7 @@ export class EventModalComponent implements OnInit {
 
   onConfirm() {
     if (!this.isUpdate) {
-      this.service.createNewEvent(this.event)
+      this.eventService.createNewEvent(this.event)
         .then(this.closeWithResult.bind(this))
         .catch(this.handleFail.bind(this))
       return;
@@ -46,7 +54,7 @@ export class EventModalComponent implements OnInit {
   }
 
   updateMember() {
-    this.service.updateEvent(this.event)
+    this.eventService.updateEvent(this.event)
       .then(this.closeWithResult.bind(this))
       .catch(this.handleFail.bind(this));
   }
@@ -61,11 +69,17 @@ export class EventModalComponent implements OnInit {
 
 }
 
+function createDefaultEvent(): Event {
+  const e = new Event(undefined, undefined, undefined, createDefaultdate(), createDefaultdate());
+  e.organizerId = '';
+  return e;
+}
+
 function createDefaultdate(): Date {
-  const d = new Date();
-  d.setUTCHours(18);
-  d.setUTCMinutes(0);
-  d.setUTCSeconds(0);
-  d.setUTCMilliseconds(0);
-  return d;
+  const d = Moment.utc();
+  d.hour(18);
+  d.minute(0);
+  d.second(0);
+  d.millisecond(0);
+  return d.toDate();
 }

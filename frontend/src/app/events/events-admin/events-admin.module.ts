@@ -9,6 +9,7 @@ import { NgbModalModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap'
 import { FormsModule } from '@angular/forms';
 import { EventModalComponent } from './events-modal/events-modal.component';
 import { DateTimePickerModule } from '../../date-time-picker/date-time-picker.module';
+import { MemberCommonModule } from '../../member/member-common/member-common.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { DateTimePickerModule } from '../../date-time-picker/date-time-picker.mo
     NgbDatepickerModule,
     EventCommonModule,
     EventAdminRoutingModule,
+    MemberCommonModule,
     DateTimePickerModule,
   ],
   declarations: [EventAdminComponent, EventModalComponent],

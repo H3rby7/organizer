@@ -4,7 +4,7 @@ import { DateTimePickerComponent } from './date-time-picker.component';
 import { FormsModule } from '@angular/forms';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
-describe('EventListComponent', () => {
+describe('DateTimePicker component', () => {
   let component: DateTimePickerComponent;
   let fixture: ComponentFixture<DateTimePickerComponent>;
 

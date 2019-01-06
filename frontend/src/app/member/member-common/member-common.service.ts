@@ -11,11 +11,17 @@ export class MemberCommonService {
 
   protected apiBaseUrl = environment.backendApiUrl + MemberResourceConfig.baseUrl;
   protected ePs = MemberResourceConfig.endpoints;
+  protected static members: Member[]
 
   constructor(protected readonly http: HttpClient) { }
 
   getAll(): Promise<Member[]> {
-    return this.http[this.ePs.ALL.method.toString()](`${this.apiBaseUrl}${this.ePs.ALL.path}`).toPromise();
+    if (MemberCommonService.members) {
+      return Promise.resolve(MemberCommonService.members);
+    }
+    const promise = this.http[this.ePs.ALL.method.toString()](`${this.apiBaseUrl}${this.ePs.ALL.path}`).toPromise() as Promise<Member[]>;
+    promise.then(res => MemberCommonService.members = res);
+    return promise;
   }
 
   getOneById(id: string): Promise<Member[]> {

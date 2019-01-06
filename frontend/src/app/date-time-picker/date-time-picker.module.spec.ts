@@ -1,6 +1,6 @@
 import { DateTimePickerModule } from './date-time-picker.module';
 
-describe('EventCommonModule', () => {
+describe('DateTimePicker Module', () => {
   let module: DateTimePickerModule;
 
   beforeEach(() => {

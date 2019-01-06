@@ -5,7 +5,7 @@ import BasicService from './basic.service';
 import BasicDAO from '../dao/basic.dao';
 import { Member } from '../../../shared/model/member';
 
-describe('MemberService', () => {
+describe('Basic Service', () => {
     let service: BasicService<any>;
     let dao = new BasicDAO<Member>("anything");
     let mockDao = mock(dao);

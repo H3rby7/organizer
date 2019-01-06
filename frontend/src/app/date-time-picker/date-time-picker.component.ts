@@ -1,7 +1,7 @@
-import { Component, ViewChild, forwardRef, Input, ModuleWithComponentFactories } from '@angular/core';
+import { Component, ViewChild, forwardRef, Input } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, } from '@angular/forms';
-import  * as Moment from 'moment/moment';
+import  * as Moment from 'moment';
 
 let count = 1;
 const IDENTIFIER = 'datetimepicker';

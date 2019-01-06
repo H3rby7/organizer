@@ -1,5 +1,10 @@
-body.modal-open .modal {
-  display: initial;
+body.modal-open {
+  // #ngb-live {
+  //   display: none;
+  // }
+  .modal {
+    display: initial;
+  }
 }
 
 button.calendar, button.calendar:active {

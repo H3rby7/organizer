@@ -2,7 +2,7 @@ import { Collection, ObjectID } from "mongodb";
 import DbService from "../db.service";
 import { TypeWithID } from '../../../shared/model/typeWithId';
 
-class BasicDAO<T> {
+class BasicDAO<T extends TypeWithID> {
 
     constructor(protected collectionName: string) {
 
@@ -13,11 +13,11 @@ class BasicDAO<T> {
     }
 
     findOneById(id: string): Promise<T> {
-        return this.collection().findOne(new ObjectID(id));
+        return this.collection().findOne({_id: id});
     }
 
     deleteOneById(id: string): Promise<boolean> {
-        return this.collection().findOneAndDelete({_id: new ObjectID(id)})
+        return this.collection().findOneAndDelete({_id: id})
         .then(res => {
             if (res && res.ok === 1) {
                 return Promise.resolve(true);
@@ -33,6 +33,7 @@ class BasicDAO<T> {
 
     
     insertOne(basicObject: T): Promise<T> {
+        basicObject._id = new ObjectID().toHexString().toString();
         return this.collection().insertOne(basicObject)
             .then(res =>  this.collection().findOne({_id: res.insertedId}))
             .catch(err => Promise.reject(err));
@@ -43,7 +44,7 @@ class BasicDAO<T> {
         if (basicObject._id) {
             delete basicObject._id;
         }
-        return this.collection().findOneAndUpdate({_id: new ObjectID(id)}, {$set: basicObject}, {returnOriginal: false})
+        return this.collection().findOneAndUpdate({_id: id}, {$set: basicObject}, {returnOriginal: false})
             .then(res =>  Promise.resolve(res.value))
             .catch(err => Promise.reject(err));
     }

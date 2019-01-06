@@ -8,7 +8,7 @@
     "watch": "tsc --watch --sourceMap",
     "server": "node dist/backend/src/index.js",
     "start": "npm run build && npm run server isProd=false",
-    "test-data": "ts-node db_scripts/create-test-data.ts isProd=false",
+    "test-data": "ts-node db_scripts/test-data/wipe-and-insert-test-data.ts isProd=false",
     "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "author": "joka",
@@ -33,6 +33,7 @@
     "app-root-path": "^2.1.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "moment": "^2.23.0",
     "mongodb": "^3.1.1",
     "uuid": "^3.3.2",
     "winston": "^3.0.0"
